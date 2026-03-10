@@ -311,7 +311,6 @@ This project highlights key **automation engineering capabilities**:
 
 Potential improvements for expanding the framework:
 
-* Prompt playwright-test-healer to fix the skipped tests in account-pom.spec.ts
 * Prompt playwright-test-generator to create ### 1. Homepage and Navigation tests from test-plan.md
 * Prompt playwright-test-generator to create ### 2. Product Browsing and Details tests from test-plan.md
 * Prompt playwright-test-generator to create ### 3. Search Functionality tests from test-plan.md
