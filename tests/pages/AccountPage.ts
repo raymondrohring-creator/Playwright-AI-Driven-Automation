@@ -113,6 +113,10 @@ export class AccountPage {
     // 2. A redirect to account page
     // 3. A success message on the page
     
+    // Wait for page to settle after navigation
+    await this.page.waitForLoadState('load').catch(() => {});
+    await this.page.waitForTimeout(500);
+    
     // Try multiple ways to verify success
     const successAlert = this.page.locator('.alert.alert-success, div[class*="alert-success"], div[role="alert"][class*="success"]').first();
     const accountTitle = this.page.locator('h1, h2, h3').filter({ hasText: /account|profile|dashboard/i }).first();
@@ -120,8 +124,16 @@ export class AccountPage {
     // Check if either success message or account page is visible
     const hasSuccessAlert = await successAlert.isVisible().catch(() => false);
     const hasAccountTitle = await accountTitle.isVisible().catch(() => false);
-    const isAccountPage = (await this.page.title()).toLowerCase().includes('account') ||
-                         (await this.page.url()).includes('/account/');
+    
+    // Safely check page title and URL with error handling for navigation race conditions
+    let isAccountPage = false;
+    try {
+      const pageTitle = await this.page.title().catch(() => '');
+      const pageUrl = await this.page.url().catch(() => '');
+      isAccountPage = pageTitle.toLowerCase().includes('account') || pageUrl.includes('/account/');
+    } catch {
+      // Navigation in progress - that's acceptable
+    }
     
     const isSuccessful = hasSuccessAlert || hasAccountTitle || isAccountPage;
     expect(isSuccessful).toBeTruthy();
