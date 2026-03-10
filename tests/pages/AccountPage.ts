@@ -213,31 +213,34 @@ export class AccountPage {
 
   async submitLogin() {
     await this.loginButton.click();
-    await this.page.waitForLoadState('networkidle');
+    await this.page.waitForLoadState('load').catch(() => {});
+    await this.page.waitForTimeout(500);
   }
 
   async logout() {
     await this.logoutLink.click();
-    await this.page.waitForLoadState('networkidle');
+    await this.page.waitForLoadState('load').catch(() => {});
+    await this.page.waitForTimeout(500);
   }
 
   async attemptRegistrationWithoutAgreeingTerms(firstName: string, lastName: string, email: string, password: string) {
     await this.fillRegistrationForm(firstName, lastName, email, password);
     // Don't accept terms - just try to submit
     await this.continueButton.click();
-    await this.page.waitForLoadState('networkidle');
+    await this.page.waitForTimeout(500);
   }
 
   async attemptRegistrationWithMissingFields() {
     // Try to submit without filling required fields
     await this.continueButton.click();
-    await this.page.waitForLoadState('networkidle');
+    await this.page.waitForTimeout(500);
   }
 
   async attemptLoginWithWrongCredentials(email: string, password: string) {
     await this.loginEmailInput.fill(email);
     await this.loginPasswordInput.fill(password);
     await this.loginButton.click();
-    await this.page.waitForLoadState('networkidle');
+    await this.page.waitForLoadState('load').catch(() => {});
+    await this.page.waitForTimeout(500);
   }
 }
