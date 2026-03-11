@@ -35,7 +35,7 @@ export class AccountPage {
     ).or(
       this.page.locator('input[name*="confirm"]')
     ).or(
-      this.page.locator('input[placeholder*="confirm"]', { exact: false })
+      this.page.locator('input[placeholder*="confirm"]')
     );
   }
 
@@ -127,13 +127,19 @@ export class AccountPage {
     
     // Safely check page title and URL with error handling for navigation race conditions
     let isAccountPage = false;
+    let pageTitle = '';
+    let pageUrl = '';
     try {
-      const pageTitle = await this.page.title().catch(() => '');
-      const pageUrl = await this.page.url().catch(() => '');
-      isAccountPage = pageTitle.toLowerCase().includes('account') || pageUrl.includes('/account/');
+      pageTitle = await this.page.title();
     } catch {
-      // Navigation in progress - that's acceptable
+      pageTitle = '';
     }
+    try {
+      pageUrl = await this.page.url();
+    } catch {
+      pageUrl = '';
+    }
+    isAccountPage = pageTitle.toLowerCase().includes('account') || pageUrl.includes('/account/');
     
     const isSuccessful = hasSuccessAlert || hasAccountTitle || isAccountPage;
     expect(isSuccessful).toBeTruthy();
@@ -147,7 +153,7 @@ export class AccountPage {
   async verifyRegistrationError(errorText?: string) {
     await expect(this.errorMessage).toBeVisible();
     if (errorText) {
-      await expect(this.page).toContainText(errorText);
+      await expect(this.errorMessage).toContainText(errorText);
     }
   }
 

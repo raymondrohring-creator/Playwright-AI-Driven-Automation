@@ -313,7 +313,6 @@ This project highlights key **automation engineering capabilities**:
 
 Potential improvements for expanding the framework:
 
-* Prompt playwright-test-generator to create ### 2. Product Browsing and Details tests from test-plan.md
 * Prompt playwright-test-generator to create ### 3. Search Functionality tests from test-plan.md
 * Prompt playwright-test-generator to create ### 7. Information Pages tests from test-plan.md
 

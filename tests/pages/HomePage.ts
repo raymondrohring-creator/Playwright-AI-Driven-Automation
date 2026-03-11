@@ -1,4 +1,4 @@
-import { Page, expect } from '@playwright/test';
+import { Page, Locator, expect } from '@playwright/test';
 
 /**
  * HomePage - Encapsulates interactions with the Cloudberry Store homepage
@@ -165,7 +165,7 @@ export class HomePage {
     await this.page.waitForTimeout(300);
   }
 
-  async navigateToCategory(categoryLink: Page.Locator) {
+  async navigateToCategory(categoryLink: Locator) {
     await categoryLink.click();
     await this.page.waitForLoadState('load').catch(() => {});
     await this.page.waitForTimeout(300);

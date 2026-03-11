@@ -23,16 +23,7 @@ tools:
   - playwright-test/browser_wait_for
   - playwright-test/planner_setup_page
   - playwright-test/planner_save_plan
-model: Claude Sonnet 4
-mcp-servers:
-  playwright-test:
-    type: stdio
-    command: npx
-    args:
-      - playwright
-      - run-test-mcp-server
-    tools:
-      - "*"
+model: claude-3-5-sonnet
 ---
 
 You are an expert web test planner with extensive experience in quality assurance, user experience testing, and test

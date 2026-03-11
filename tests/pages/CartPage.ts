@@ -211,8 +211,6 @@ export class CartPage {
     const quantityInput = productRow.locator('input[type="number"]').or(
       productRow.locator('input[name*="quantity"]')
     ).or(
-      productRow.locator('input').filter({ hasAttribute: 'value' })
-    ).or(
       productRow.locator('input').first()
     );
     
