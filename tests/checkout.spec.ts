@@ -10,9 +10,11 @@ test.describe('Checkout Process', () => {
     await page.getByRole('link', { name: 'MacBook' }).first().click();
     
     // Wait for Add to Cart action to complete
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
+    await page.waitForTimeout(300);
     await page.getByRole('button', { name: 'Add to Cart' }).click();
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
+    await page.waitForTimeout(300);
 
     // 1. Click Checkout with items in cart and wait for navigation
     await Promise.all([
@@ -20,9 +22,11 @@ test.describe('Checkout Process', () => {
       page.getByRole('link', { name: ' Checkout' }).click()
     ]);
 
+    // Wait for personal details section to fully load
+    await expect(page.getByRole('group', { name: 'Your Personal Details' })).toBeVisible();
+
     // Verify: Checkout page loads with personal details form
     await expect(page).toHaveTitle('Checkout');
-    await expect(page.getByRole('group', { name: 'Your Personal Details' })).toBeVisible();
     await expect(page.getByRole('radio', { name: 'Register Account' })).toBeVisible();
     await expect(page.getByRole('radio', { name: 'Guest Checkout' })).toBeVisible();
 
@@ -50,15 +54,20 @@ test.describe('Checkout Process', () => {
     await page.getByRole('link', { name: 'MacBook' }).first().click();
     
     // Wait for Add to Cart action to complete
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
+    await page.waitForTimeout(300);
     await page.getByRole('button', { name: 'Add to Cart' }).click();
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
+    await page.waitForTimeout(300);
 
     // 1. Navigate to checkout and wait for navigation
     await Promise.all([
       page.waitForURL(/checkout\//),
       page.getByRole('link', { name: ' Checkout' }).click()
     ]);
+
+    // Wait for personal details section to fully load
+    await expect(page.getByRole('group', { name: 'Your Personal Details' })).toBeVisible();
 
     // Fill personal details and continue
     await page.getByRole('radio', { name: 'Guest Checkout' }).click();
@@ -101,15 +110,20 @@ test.describe('Checkout Process', () => {
     await page.getByRole('link', { name: 'MacBook' }).first().click();
     
     // Wait for Add to Cart action to complete
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
+    await page.waitForTimeout(300);
     await page.getByRole('button', { name: 'Add to Cart' }).click();
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
+    await page.waitForTimeout(300);
 
     // Navigate to checkout and wait for navigation
     await Promise.all([
       page.waitForURL(/checkout\//),
       page.getByRole('link', { name: ' Checkout' }).click()
     ]);
+
+    // Wait for personal details section to fully load
+    await expect(page.getByRole('group', { name: 'Your Personal Details' })).toBeVisible();
 
     // 1. Select Register Account option
     await page.getByRole('radio', { name: 'Register Account' }).click();

@@ -313,8 +313,9 @@ This project highlights key **automation engineering capabilities**:
 
 Potential improvements for expanding the framework:
 
-* Prompt playwright-test-generator to create ### 3. Search Functionality tests from test-plan.md
-* Prompt playwright-test-generator to create ### 7. Information Pages tests from test-plan.md
+* Reorganize, restructure, rename (i.e. -pom.spec.ts files), and remove unnecessary files (i.e. checkout.spec.ts)
+* Prompt playwright-test-generator to "Add new test coverage - Extend existing test suites with additional scenarios"
+* Prompt playwright-test-healer to "Review and refactor - Optimize existing page objects or test structure"
 
 ---
 
