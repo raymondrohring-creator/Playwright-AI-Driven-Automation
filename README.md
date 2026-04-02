@@ -316,6 +316,8 @@ Potential improvements for expanding the framework:
 * Reorganize, restructure, rename (i.e. -pom.spec.ts files), and remove unnecessary files (i.e. checkout.spec.ts)
 * Prompt playwright-test-generator to "Add new test coverage - Extend existing test suites with additional scenarios"
 * Prompt playwright-test-healer to "Review and refactor - Optimize existing page objects or test structure"
+* Implement perofrmance updates
+* Refine Test Plan and Test Case generation process
 
 ---
 
