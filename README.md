@@ -318,6 +318,7 @@ Potential improvements for expanding the framework:
 * Prompt playwright-test-healer to "Review and refactor - Optimize existing page objects or test structure"
 * Implement perofrmance updates
 * Refine Test Plan and Test Case generation process
+* Start new project to test ERP systems
 
 ---
 
